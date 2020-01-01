@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class UserRepository {
 
-    private static ProgressDialog progressDialog;
     private UserDao userDao;
     private Context context;
 
@@ -22,10 +21,7 @@ public class UserRepository {
     }
 
     public void insert(User user) {
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Kaydediliyor...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+
         new InsertNoteAsyncTask(userDao).execute(user);
     }
 
@@ -79,7 +75,6 @@ public class UserRepository {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            progressDialog.dismiss();
         }
     }
 }
